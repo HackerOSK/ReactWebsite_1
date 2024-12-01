@@ -10,17 +10,18 @@ import team5 from "../Images/team5.avif";
 function Team() {
 	return (
 		<>
-			<div className="bg-zinc-900 h-[100vw]">
-				<div className="flex flex-col justify-center items-center mt-20 ">
+			<div className="bg-zinc-900 h-full">
+				<div className="flex flex-col justify-center items-center mt-20">
 					<GroupsIcon sx={{ fontSize: 150, color: "white" }} />
-					<h1 className="text-6xl font-bold text-center text-green-500 ">
+					<h1 className="text-6xl font-bold text-center text-green-500">
 						Our Team
 					</h1>
-					<p className="text-l pt-5 text-center text-white ">
+					<p className="text-l pt-5 text-center text-white">
 						Meet the talented individuals behind our projects.
 					</p>
 				</div>
-				<div className="grid grid-rows-3 grid-cols-3 gap-8 p-10">
+				{/* Responsive Grid for Team Cards */}
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 p-10">
 					<TeamCard
 						photo={team1}
 						cname="Jone Snow"

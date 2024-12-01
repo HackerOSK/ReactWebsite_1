@@ -1,7 +1,7 @@
-import Loading from "./Components/Loading.JSX";
+import Loading from "./Components/Loading";
 
 import React, { useState, useEffect } from "react";
-import MainPage from "./Components/Mainpage.JSX";
+import MainPage from "./Components/Mainpage";
 
 const App = () => {
 	const [isLoading, setIsLoading] = useState(true); // Loading state
@@ -15,7 +15,12 @@ const App = () => {
 		return () => clearTimeout(timer); // Cleanup the timer
 	}, []);
 
-	return <div className="App">{isLoading ? <Loading /> : <MainPage />} </div>;
+	return (
+		<div className="App" style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+		  {isLoading ? <Loading /> : <MainPage />}
+		</div>
+	  );
+	  
 };
 
 export default App;

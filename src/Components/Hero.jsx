@@ -1,4 +1,4 @@
-import backvid from "..//Images//Hero.mp4";
+import backvid from "../Images/Hero.mp4";
 
 function Hero() {
 	return (
@@ -13,19 +13,19 @@ function Hero() {
 			></video>
 
 			{/* Overlay on Left Side */}
-			<div className="absolute top-0 left-0 h-full w-1/2 bg-black bg-opacity-50"></div>
+			<div className="absolute top-0 left-0 h-full w-full md:w-1/2 bg-black bg-opacity-50"></div>
 
 			{/* Left-Aligned Content */}
-			<div className="relative z-10 h-full flex flex-col justify-center text-left p-12 text-white w-1/2">
-				<h1 className="text-7xl font-bold mb-4">
+			<div className="relative z-10 h-full flex flex-col justify-center text-left p-6 md:p-12 text-white w-full md:w-1/2">
+				<h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4">
 					Track Cryptocurrency Transactions
 				</h1>
-				<p className="text-2xl mb-4">
+				<p className="text-lg sm:text-xl md:text-2xl mb-4">
 					Efficient and secure transaction tracking. Built with cutting-edge
-					technology.Identify the end receiver easily.Ensure transparency in the
-					blockchain.
+					technology. Identify the end receiver easily. Ensure transparency in
+					the blockchain.
 				</p>
-				<div className="flex space-x-4">
+				<div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
 					{/* Hacker Green Button */}
 					<button className="px-6 py-3 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-lg transition duration-300">
 						Get Started
