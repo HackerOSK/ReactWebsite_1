@@ -1,4 +1,5 @@
 import backvid from "../Images/Hero.mp4";
+import {Link} from "react-router-dom";
 
 function Hero() {
 	return (
@@ -27,9 +28,11 @@ function Hero() {
 				</p>
 				<div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
 					{/* Hacker Green Button */}
+					
 					<button className="px-6 py-3 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-lg transition duration-300">
-						Get Started
+					<Link to="/dashboard">Get Started</Link>
 					</button>
+					
 
 					{/* Transparent Button */}
 					<button className="px-6 py-3 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-black transition duration-300">

@@ -2,6 +2,8 @@ import Loading from "./Components/Loading";
 
 import React, { useState, useEffect } from "react";
 import MainPage from "./Components/Mainpage";
+import { BrowserRouter,Route,Routes } from "react-router-dom";
+import UserDashboard from "./UserDashboard";
 
 const App = () => {
 	const [isLoading, setIsLoading] = useState(true); // Loading state
@@ -16,11 +18,20 @@ const App = () => {
 	}, []);
 
 	return (
-		<div className="App" style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+		<BrowserRouter>
+		<Routes>
+			<Route path="/" element={<div className="App" style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
 		  {isLoading ? <Loading /> : <MainPage />}
-		</div>
+		</div>} />
+		<Route path="/dashboard" element={<UserDashboard />} />
+		</Routes>
+		
+		</BrowserRouter>
 	  );
 	  
 };
 
 export default App;
+
+
+
