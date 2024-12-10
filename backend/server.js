@@ -12,6 +12,7 @@ import router from './routes/routes.js';
 import { initializeBtcNeo4jServer } from './services/btcNeoInstance.js';
 const app = express();
 const PORT = process.env.PORT || 4000;
+import fetchCoinGeckoData from './dashboardServer.js'
 
 
 app.use(cors({
@@ -67,7 +68,19 @@ callDatabase();
 //       console.error("Error during tracing:", error);
 //       return btcFlowMapper.driver.close();
 //     });
-
+  // Route to fetch CoinGecko data
+app.get('/coingecko', async (req, res) => {
+  try {
+      const data = await fetchCoinGeckoData();
+      // Remove .data since the API response is already processed
+      const exchanges = data.slice(0, 10);
+      
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(exchanges); // Use .json() instead of .send() for JSON responses
+  } catch (error) {
+      res.status(500).json({ error: error.message }); // Use .json() for consistency
+  }
+});
 
   
   app.use(bodyParser.urlencoded({ extended: true }));

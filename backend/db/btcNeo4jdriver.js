@@ -7,9 +7,9 @@ import neo4j, { driver } from 'neo4j-driver'
 //   encoding: 'utf8',
 // })
 
-const URI = "neo4j+s://2a5d4ce2.databases.neo4j.io"
-const USER = "neo4j"
-const PASSWORD = "xmsSwC4kCouphYt-mtAivpVyJzmkZLBQO4MHAjGNfYE"
+const URI = "neo4j+s://2bdd9fa8.databases.neo4j.io";
+const USER = "neo4j";
+const PASSWORD = "z69lmWz8lKxhthKw3sk7vv62pWjGgBp51z96Yg88apw";
 export const calldB1 = (async () => {
    
     let driver
