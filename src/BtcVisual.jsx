@@ -170,9 +170,36 @@ function BtcVisual() {
             </div>
           ))}
         </div>
+        {details.Group === "transaction" && (
+          <div className="p-4">
+            <button className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
+              Check Mixers
+            </button>
+          </div>
+        )}
+        {details.Group === "vin" && (
+          <div className="flex g-2 p-4">
+            <button className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600">
+              Add to WatchList
+            </button>
+            <button className="bg-red-300 text-white px-4 py-2 rounded hover:bg-red-400">
+              Get Personal Info
+            </button>
+          </div>
+        )}
+        {details.Group === "vout" && (
+          <div className=" flex g-2 p-4">
+            <button className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600">
+              Add to WatchList
+            </button>
+            <button className="bg-red-300 text-white px-4 py-2 rounded hover:bg-red-400">
+              Get Personal Info
+            </button>
+          </div>
+        )}
       </div>
     );
-
+  
     if (selectedNode) {
       const nodeDetails = {
         ID: selectedNode.id,
@@ -191,7 +218,7 @@ function BtcVisual() {
         </div>
       );
     }
-
+  
     if (selectedLink) {
       const linkDetails = {
         Source: selectedLink.source.id,
@@ -208,11 +235,12 @@ function BtcVisual() {
         </div>
       );
     }
-
+  
     return (
       <div className="text-gray-500 text-center py-4">No details to display.</div>
     );
   };
+  
 
   return (
     <div className="min-h-screen overflow-hidden relative">
@@ -241,6 +269,19 @@ function BtcVisual() {
           >
             Search
           </button>
+          <button
+            className="px-4 py-2 bg-green-600 rounded-lg hover:bg-green-800"
+            onClick={handleSearch}
+          >
+            Normalise
+          </button>
+          <button
+            className="px-4 py-2 bg-red-400 rounded-lg hover:bg-red-600"
+            onClick={handleSearch}
+          >
+            Anomalous
+          </button>
+
         </div>
       </header>
 
