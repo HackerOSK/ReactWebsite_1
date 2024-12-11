@@ -2,7 +2,8 @@ import React, { lazy, Suspense, useState, useEffect } from "react";
 import { useQuery, gql } from "@apollo/client";
 import "./App.css"; // TailwindCSS can be included here if configured.
 import client, { ethClient } from './apolloClient';
-import backgroundVid from './assets/VisualizerBackground.mp4'
+import backgroundVid from './assets/VisualizerBackground.mp4';
+import LoadingScreen from './Components_Interaction/LoadingScreen'
 
 const NoSSRForceGraph = lazy(() => import("./lib/NoSSRForceGraph")); // Lazy load the graph component.
 
@@ -19,7 +20,7 @@ query GetTransaction($hash: String!) {
     vout {
       address
     }
-
+    anomaly
   }
 }
 `;
@@ -56,6 +57,7 @@ const formatData = (transactionData, relationsData) => {
     fee: transaction.fee,
     totalVinValue: transaction.totalVinValue,
     totalVoutValue: transaction.totalVoutValue,
+    anomaly: transaction.anomaly,
   });
 
   transaction.vin.forEach((vin) => {
@@ -100,6 +102,25 @@ function BtcVisual() {
   const [selectedNode, setSelectedNode] = useState(null);
   const [selectedLink, setSelectedLink] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isLoadingBTC, setIsLoadingBTC] = useState(true);
+  
+
+
+  useEffect(() => {
+		// Set a timer for 3 seconds to transition to the main page
+		const timer = setTimeout(() => {
+			setIsLoadingBTC(false);
+		}, 3000);
+
+		return () => clearTimeout(timer); // Cleanup the timer
+	}, []);
+
+  
+
+
+  
+
+
 
   const { refetch: refetchTransaction } = useQuery(getTransactionQuery, {
     variables: { hash: hash },
@@ -128,6 +149,18 @@ function BtcVisual() {
     setSelectedNode(null);
     setSelectedLink(null);
     setIsSidebarOpen(false);
+  };
+
+  const handleHighlightAnomalies = () => {
+    setGraphData((prevData) => {
+      const updatedNodes = prevData.nodes.map((node) => {
+        if (node.anomaly) {
+          return { ...node, color: "red" };
+        }
+        return { ...node, color: node.group === "transaction" ? "gold" : "gray" };
+      });
+      return { ...prevData, nodes: updatedNodes };
+    });
   };
 
   const handleOutsideClick = (e) => {
@@ -241,17 +274,20 @@ function BtcVisual() {
     );
   };
   
+  if (isLoadingBTC) {
+    return <LoadingScreen />;
+  }
 
   return (
     <div className="min-h-screen overflow-hidden relative">
       {/* Video background */}
       <video
-				className="absolute top-0 left-0 w-full h-full object-cover"
-				src={backgroundVid}
-				autoPlay
-				loop
-				muted
-			></video>
+        className="absolute top-0 left-0 w-full h-full object-cover"
+        src={backgroundVid}
+        autoPlay
+        loop
+        muted
+      ></video>
       
       <header className="relative p-6 flex justify-between items-center z-1">
         <h1 className="text-4xl font-bold text-white">Transaction Visualizer</h1>
@@ -281,7 +317,6 @@ function BtcVisual() {
           >
             Anomalous
           </button>
-
         </div>
       </header>
 

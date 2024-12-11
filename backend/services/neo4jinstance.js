@@ -594,9 +594,9 @@ const resolvers = {
 
 
 // Configure Neo4j database connection
-const URI = "neo4j+s://2bdd9fa8.databases.neo4j.io";
+const URI = "neo4j+s://72e5d724.databases.neo4j.io";
 const USER = "neo4j";
-const PASSWORD = "z69lmWz8lKxhthKw3sk7vv62pWjGgBp51z96Yg88apw";
+const PASSWORD = "kMp0k7q-9nsfUCQil80CYDWW_G7wV000ovpSSMmjqxc";
 const driver = neo4j.driver(URI, neo4j.auth.basic(USER, PASSWORD));
 
 // Initialize Neo4jGraphQL

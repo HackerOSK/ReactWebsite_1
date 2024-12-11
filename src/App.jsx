@@ -9,6 +9,7 @@ import EthVisual from "./EthVisual"
 
 const App = () => {
 	const [isLoading, setIsLoading] = useState(true); // Loading state
+	const [isLoadingBTC, setIsLoadingBTC] = useState(true); // Loading state
 
 	useEffect(() => {
 		// Set a timer for 3 seconds to transition to the main page
@@ -18,6 +19,8 @@ const App = () => {
 
 		return () => clearTimeout(timer); // Cleanup the timer
 	}, []);
+
+	
 
 	return (
 		<BrowserRouter>

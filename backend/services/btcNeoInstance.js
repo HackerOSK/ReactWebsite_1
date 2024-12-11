@@ -323,6 +323,7 @@ type Transaction {
   fee: Int
   confirmed: Boolean
   blockHeight: Int
+  anomaly: Boolean
   involvedCex: CentralizedExchange @relationship(type: "INVOLVES", direction: OUT)
 }
 
@@ -353,10 +354,18 @@ type CentralizedExchange {
   linkedin: String
 }
 
+type CexTransaction {
+  vin: Vin
+  transaction: Transaction
+  centralizedExchange: CentralizedExchange
+}
+
 type Query {
   transaction(hash: String): Transaction
   transactions: [Transaction]
   getTransactionRelations(transactionHash: String!): [Relationship!]!
+  getCexTransactions: [CexTransaction!]!
+  
 }
 
 type Mutation {
@@ -443,6 +452,29 @@ const resolvers = {
           vin: vins,
           vout: vouts,
         };
+      } finally {
+        await session.close();
+      }
+    },
+
+    getCexTransactions: async (_, __, context) => {
+      const session = driver.session();
+
+      try {
+        const result = await session.run(`
+          MATCH (vin:Vin)-[:SENT_TO]->(t:Transaction)-[:INVOLVES]->(cex:CentralizedExchange)
+          OPTIONAL MATCH (t)-[:OUTPUT]->(vout:Vout)
+          RETURN vin, t, cex, collect(vout) AS vouts
+        `);
+
+        return result.records.map((record) => ({
+          vin: record.get("vin").properties,
+          transaction: {
+            ...record.get("t").properties,
+            vouts: record.get("vouts").map((vout) => vout.properties),
+          },
+          centralizedExchange: record.get("cex").properties,
+        }));
       } finally {
         await session.close();
       }
