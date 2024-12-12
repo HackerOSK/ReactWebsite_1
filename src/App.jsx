@@ -6,6 +6,8 @@ import { BrowserRouter,Route,Routes } from "react-router-dom";
 import UserDashboard from "./UserDashboard";
 import BtcVisual from "./BtcVisual"
 import EthVisual from "./EthVisual"
+import HackerThemeBiodata from "./UserDetails"
+import InvestigativeInterface from "./demoDetails"
 
 const App = () => {
 	const [isLoading, setIsLoading] = useState(true); // Loading state
@@ -31,6 +33,8 @@ const App = () => {
 		<Route path="/dashboard" element={<UserDashboard />} />
 		<Route path="/btc" element={<BtcVisual/>}/>
       	<Route path="/eth" element={<EthVisual/>}/>
+		<Route path="/biodata1" element={<HackerThemeBiodata/>}/>
+		{/* <Route path="/biodata1" element={<InvestigativeInterface/>}/> */}
 		</Routes>
 		
 		</BrowserRouter>

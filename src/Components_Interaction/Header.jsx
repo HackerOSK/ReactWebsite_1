@@ -15,18 +15,10 @@ export default function Header() {
           BlockchainGuard
         </h1>
         <div className="flex items-center space-x-4">
-          <div className="relative group">
-            <input
-              type="text"
-              placeholder="Search wallet or transaction..."
-              className="bg-gray-700 text-white px-4 py-2 pl-10 pr-4 rounded-full w-64 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all duration-300 placeholder-gray-400"
-            />
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-green-400 transition-colors duration-300"  />
       
-          </div>
-          <Link to="/btc">
-          <button className="bg-green-300 p-2 rounded-full text-black hover:bg-red-400 transition-colors duration-300">
-            Inspect
+          <Link to="/eth">
+          <button className="bg-green-300 p-2 w-56 rounded-full text-black hover:bg-red-400 transition-colors duration-300">
+            Investigate Wallet
           </button>
           </Link>
           

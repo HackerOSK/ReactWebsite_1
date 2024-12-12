@@ -3,6 +3,7 @@ import { useQuery, gql } from "@apollo/client";
 import "./App.css"; // TailwindCSS can be included here if configured.
 import client, { ethClient } from './apolloClient';
 import backgroundVid from './assets/VisualizerBackground.mp4'
+import {Link} from 'react-router-dom'
 
 const NoSSRForceGraph = lazy(() => import("./lib/NoSSRForceGraph")); // Lazy load the graph component.
 
@@ -194,7 +195,9 @@ export default function EthVisual() {
             <div key={key} className="grid grid-cols-2">
               <div className="p-2 border-r font-medium text-gray-600">{key}</div>
               <div className="p-2 flex justify-between items-center">
-                <span className="whitespace-nowrap overflow-auto max-w-full">{typeof value === "object" ? JSON.stringify(value) : value.toString()}</span>
+                <span className="whitespace-nowrap overflow-auto max-w-full">
+                  {typeof value === "object" ? JSON.stringify(value) : value.toString()}
+                </span>
                 <button
                   className="text-blue-500 hover:underline"
                   onClick={() => navigator.clipboard.writeText(value)}
@@ -205,16 +208,33 @@ export default function EthVisual() {
             </div>
           ))}
         </div>
+        {details.Group === "transaction" && (
+          <div className="p-4">
+            <button className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
+              Check Mixers
+            </button>
+          </div>
+        )}
+        {details.Group === "wallet" && (
+          <div className="flex g-2 p-4">
+            <button className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600">
+              Add to WatchList
+            </button>
+            <button className="bg-red-300 text-white px-4 py-2 rounded hover:bg-red-400">
+             <Link to="/biodata1"> Get Personal Info</Link>
+            </button>
+          </div>
+        )}
+        
       </div>
     );
-
+  
     if (selectedNode) {
       const nodeDetails = {
         ID: selectedNode.id,
         Label: selectedNode.label,
         Group: selectedNode.group,
       };
-
       return (
         <div className="space-y-6">
           <div className="bg-green-100 text-green-800 px-4 py-2 rounded-md text-sm font-semibold">
@@ -224,7 +244,7 @@ export default function EthVisual() {
         </div>
       );
     }
-
+  
     if (selectedLink) {
       const linkDetails = {
         Source: selectedLink.source.id,
@@ -232,7 +252,6 @@ export default function EthVisual() {
         Type: selectedLink.type,
         Value: selectedLink.value,
       };
-
       return (
         <div className="space-y-6">
           <div className="bg-blue-100 text-blue-800 px-4 py-2 rounded-md text-sm font-semibold">
@@ -242,11 +261,9 @@ export default function EthVisual() {
         </div>
       );
     }
-
+  
     return (
-      <div className="text-gray-500 text-center py-4">
-        No details to display.
-      </div>
+      <div className="text-gray-500 text-center py-4">No details to display.</div>
     );
   };
 

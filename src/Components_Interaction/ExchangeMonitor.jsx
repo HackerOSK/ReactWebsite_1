@@ -19,7 +19,7 @@ export default function ExchangeMonitor() {
           {
             headers: {
               Authorization:
-                'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2Nsb3VkLmdvb2dsZS5jb20vd29ya3N0YXRpb25zIiwiYXVkIjoiaWR4LXJlYWN0d2Vic2l0ZTFnaXQtMTczMzAzNTU1MDIzNi5jbHVzdGVyLWUzd3Y2YXdlcjVoN2t2YXl5Zm9laW4ydTRhLmNsb3Vkd29ya3N0YXRpb25zLmRldiIsImlhdCI6MTczMzkxODkxMSwiZXhwIjoxNzM0MDA1MzExfQ.EpKe4F8UAaAryJN5Hv1Q60901m1xcF_7XEzbhBAo7Zn6NTug_zTvNZp9niBmj2Q-bK1aTw5hWEaSzorYWracAZtve1g8ewUNeGqSU4dh5Nr4WqhJJiKZoYf8BacZm6mXpCgOwdmW4EXv_-nZROY103H4T7akcH8sTsDTz28OdJhzx45OHhroCeAxvMAb4k_S0lAWnQKhKnbwszHx2u_H7C4lM2-wTcS3qy644Uadwy_HohpPhBkqmK5_WQzQfAPt8yu3F81L0RLil6bPgv1Sud6aXlxsHNiN9fH5QEh6BmDl9pD2CjZhmz5hrzbO2AsAeAibC_rdRIeJaSw4zbWmQw',
+                'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2Nsb3VkLmdvb2dsZS5jb20vd29ya3N0YXRpb25zIiwiYXVkIjoiaWR4LXJlYWN0d2Vic2l0ZTFnaXQtMTczMzAzNTU1MDIzNi5jbHVzdGVyLWUzd3Y2YXdlcjVoN2t2YXl5Zm9laW4ydTRhLmNsb3Vkd29ya3N0YXRpb25zLmRldiIsImlhdCI6MTczMzk3NTUxMywiZXhwIjoxNzM0MDYxOTEzfQ.bfmnUyyOquDEnIe76XMEunJM7FlyYRqy7YjVIWJcIQzcyDktJaC_luDV5ELX2JyGnaiIZ4-AnStYbt-2ovApiaot_Sr0wwt_3EZpslIEP1T93pubkH-wD_uJqUvdHudS3TVqfQelOsm5A35XiHrQ-pc7T0Hy4IIk5sNlyo0n2T-eJdow3w6rgTxwN-vzniJu8zjCirBrZdOH8wh6sST9GOpcmdf1v6-0X8K2jpXczypI50yjNrP3CX5IlNHyOJsWozRE0cTEFYi0kytV8gbKYaCKpuwMuyZtgG1RXB4p4a_P5tCrdTFuyrrLjColiBQJxos82FBIxdaEzxXOsS0SnA',
               'Content-Type': 'application/json',
             },
           }
